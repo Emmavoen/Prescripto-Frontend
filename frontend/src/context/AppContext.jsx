@@ -4,7 +4,9 @@ import { doctors } from "../assets/index";
 export const AppContext = createContext();
 console.log(doctors);
 const AppContextProvider = (props) => {
-  const value = { doctors };
+  const currencySymbol = "$";
+  const value = { doctors, currencySymbol };
+
   console.log(props);
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
