@@ -55,65 +55,67 @@ const Doctors = () => {
         Filter Doctors
       </button>
 
-      <div className="flex flex-col sm:flex-row gap-6">
-        {showFilter && (
-          <div className="flex flex-col gap-3 flex-1 text-[#4B5563] mt-5">
-            <p
-              onClick={() => {
-                handleSpecialityClick("General physician");
-              }}
-              className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
-    ${specialityFilter === "General physician" && "bg-indigo-100 text-black"}`}
-            >
-              General physician
-            </p>
-            <p
-              onClick={() => {
-                handleSpecialityClick("Gynecologist");
-              }}
-              className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
-    ${specialityFilter === "Gynecologist" && "bg-indigo-100 text-black"}`}
-            >
-              Gynecologist
-            </p>
-            <p
-              onClick={() => {
-                handleSpecialityClick("Dermatologist");
-              }}
-              className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
-    ${specialityFilter === "Dermatologist" && "bg-indigo-100 text-black"}`}
-            >
-              Dermatologist
-            </p>
-            <p
-              onClick={() => {
-                handleSpecialityClick("Pediatricians");
-              }}
-              className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
-    ${specialityFilter === "Pediatricians" && "bg-indigo-100 text-black"}`}
-            >
-              Pediatricians
-            </p>
-            <p
-              onClick={() => {
-                handleSpecialityClick("Neurologist");
-              }}
-              className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
-    ${specialityFilter === "Neurologist" && "bg-indigo-100 text-black"}`}
-            >
-              Neurologist
-            </p>
-            <p
-              onClick={() => {
-                handleSpecialityClick("Gastroenterologist");
-              }}
-              className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
-    ${specialityFilter === "Gastroenterologist" && "bg-indigo-100 text-black"}`}
-            >
-              Gastroenterologist
-            </p>
-          </div>
-        )}
+      <div className="flex flex-col sm:flex-row gap-6 ">
+        {/* Filter sidebar: always visible on desktop, toggle on mobile */}
+        <div
+          className={`flex-col gap-3 flex-1 text-[#4B5563] mt-5
+            ${showFilter ? "flex" : "hidden"} sm:flex`}
+        >
+          <p
+            onClick={() => {
+              handleSpecialityClick("General physician");
+            }}
+            className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
+${specialityFilter === "General physician" && "bg-indigo-100 text-black"}`}
+          >
+            General physician
+          </p>
+          <p
+            onClick={() => {
+              handleSpecialityClick("Gynecologist");
+            }}
+            className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
+${specialityFilter === "Gynecologist" && "bg-indigo-100 text-black"}`}
+          >
+            Gynecologist
+          </p>
+          <p
+            onClick={() => {
+              handleSpecialityClick("Dermatologist");
+            }}
+            className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
+${specialityFilter === "Dermatologist" && "bg-indigo-100 text-black"}`}
+          >
+            Dermatologist
+          </p>
+          <p
+            onClick={() => {
+              handleSpecialityClick("Pediatricians");
+            }}
+            className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
+${specialityFilter === "Pediatricians" && "bg-indigo-100 text-black"}`}
+          >
+            Pediatricians
+          </p>
+          <p
+            onClick={() => {
+              handleSpecialityClick("Neurologist");
+            }}
+            className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
+${specialityFilter === "Neurologist" && "bg-indigo-100 text-black"}`}
+          >
+            Neurologist
+          </p>
+          <p
+            onClick={() => {
+              handleSpecialityClick("Gastroenterologist");
+            }}
+            className={`cursor-pointer border border-[#B4B4B4] rounded-lg py-1 px-3 text-[16px] 
+${specialityFilter === "Gastroenterologist" && "bg-indigo-100 text-black"}`}
+          >
+            Gastroenterologist
+          </p>
+        </div>
         <div className="w-full flex-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 pt-5 gap-y-6  px-3 gap-x-3 sm:px-0 ">
           {filterDoc.map((doctor, index) => (
             <Link
