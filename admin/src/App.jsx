@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import Login from "./pages/login.jsx";
 import { ToastContainer } from "react-toastify";
 import { AdminContext } from "./context/ContextFile.jsx";
 import Navbar from "./components/navbar.jsx";
@@ -9,6 +8,7 @@ import AddDoctor from "./pages/Admin/AddDoctor.jsx";
 import Dashboard from "./pages/Admin/Dashboard.jsx";
 import AllApointment from "./pages/Admin/AllApointment.jsx";
 import DoctorsList from "./pages/Admin/DoctorsList.jsx";
+import Login from "../../admin/src/pages/Login.jsx";
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
