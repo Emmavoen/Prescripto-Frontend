@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
-import Login from "./pages/login";
+import Login from "./pages/login.jsx";
 import { ToastContainer } from "react-toastify";
-import { AdminContext } from "./context/ContextFile";
-import Navbar from "./components/navbar";
-import Sidebar from "./components/Sidebar";
+import { AdminContext } from "./context/ContextFile.jsx";
+import Navbar from "./components/navbar.jsx";
+import Sidebar from "./components/Sidebar.jsx";
 import { Route, Routes } from "react-router-dom";
-import AddDoctor from "./pages/Admin/AddDoctor";
-import Dashboard from "./pages/Admin/Dashboard";
-import AllApointment from "./pages/Admin/AllApointment";
-import DoctorsList from "./pages/Admin/DoctorsList";
+import AddDoctor from "./pages/Admin/AddDoctor.jsx";
+import Dashboard from "./pages/Admin/Dashboard.jsx";
+import AllApointment from "./pages/Admin/AllApointment.jsx";
+import DoctorsList from "./pages/Admin/DoctorsList.jsx";
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
