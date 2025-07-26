@@ -1,16 +1,66 @@
-import React, { useState } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import { AppContext } from "../context/AppContext";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+  const { backendUrl, setToken, token } = useContext(AppContext);
   const [state, setState] = useState("Sign Up");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [data, setData] = useState({});
+  const navigate = useNavigate();
 
   const onSubmitHandler = async (event) => {
     event.preventDefault(); // prevent default form submission behavior
+
+    try {
+      if (state === "Sign Up") {
+        const { data } = await axios.post(backendUrl + "api/user/register", {
+          email,
+          password,
+          name,
+        });
+        setData(data);
+      }
+      if (state === "Login") {
+        const { data } = await axios.post(backendUrl + "api/user/login", {
+          email,
+          password,
+        });
+        setData(data);
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message);
+    }
   };
+
+  useEffect(() => {
+    if (data.success) {
+      console.log(data);
+      localStorage.setItem("token", data.token);
+      console.log("finished seting local storage");
+      setToken(data.token);
+      console.log("befoe toast");
+      toast.success(` ${state} successful `);
+    } else {
+      console.log("testing toast");
+      toast.error(data.message);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
   return (
-    <form action="" className="min-h-[80vh] flex items-center">
+    <form
+      onSubmit={onSubmitHandler}
+      action=""
+      className="min-h-[80vh] flex items-center"
+    >
       <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border border-gray-300 rounded-xl text-zinc-600 text-sm shadow-lg ">
         <p className="text-2xl font-semibold">
           {state === "Sign Up" ? "Create Account " : "Login"}
@@ -52,7 +102,10 @@ const Login = () => {
             required
           />
         </div>
-        <button className="bg-[#5F6FFF] text-white w-full py-2 rounded-md text-base">
+        <button
+          type="submit"
+          className="bg-[#5F6FFF] text-white w-full py-2 rounded-md text-base"
+        >
           {state === "Sign Up" ? "Create Account " : "Login"}
         </button>
         <p>

@@ -11,6 +11,7 @@ import Appointment from "./pages/Appointment";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import { ToastContainer } from "react-toastify";
+import Paystack from "./pages/Paystack";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/myprofile" element={<MyProfile />} />
         <Route path="/my-appointments" element={<MyAppointment />} />
         <Route path="/appointment/:docId" element={<Appointment />} />
+        <Route path="/paystack/verify" element={<Paystack />} />
       </Routes>
       <Footer />
     </div>

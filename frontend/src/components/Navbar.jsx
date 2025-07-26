@@ -1,16 +1,20 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { assets } from "../assets/index.js";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../context/AppContext.jsx";
 const Navbar = () => {
   const navigate = useNavigate();
-  const [token, setToken] = useState(true);
 
   const [showMenu, setShowMenu] = useState(false);
+  const { token, setToken, userData } = useContext(AppContext);
   // const [dropdownOpen, setDropdownOpen] = useState(false); // NEW STATE
 
   // Helper to toggle dropdown on mobile
   // const handleProfileClick = () => setDropdownOpen((prev) => !prev);
-
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(false);
+  };
   return (
     <div className=" flex justify-between items-center test-sm py-4 mb-5 border-b border-b-gray-400">
       <img
@@ -38,13 +42,13 @@ const Navbar = () => {
         </NavLink>
       </ul>
       <div className="flex items-center gap-4">
-        {token ? (
+        {token && userData ? (
           <div
             className="flex items-center gap-2 cursor-pointer group relative"
             // Only toggle on click for mobile
             // onClick={handleProfileClick}
           >
-            <img className="w-8 rounded-full" src={assets.profile_pic} alt="" />
+            <img className="w-8 rounded-full" src={userData.image} alt="" />
             <img className="w-2.5" src={assets.dropdown_icon} alt="" />
             <div
               className={`
@@ -67,10 +71,7 @@ const Navbar = () => {
                 >
                   My Appointments
                 </p>
-                <p
-                  onClick={() => setToken(false)}
-                  className="hover:text-black cursor-pointer"
-                >
+                <p onClick={logout} className="hover:text-black cursor-pointer">
                   Logout
                 </p>
               </div>
