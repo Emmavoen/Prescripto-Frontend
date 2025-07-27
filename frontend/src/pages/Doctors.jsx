@@ -125,10 +125,18 @@ ${specialityFilter === "Gastroenterologist" && "bg-indigo-100 text-black"}`}
             >
               <img src={doctor.image} alt="" className="bg-[#EAEFFF] w-full" />
               <div className="p-4">
-                <div className="flex items-center gap-2 text-sm text-center text-green-500">
-                  <p className="w-2 h-2 bg-green-500 rounded-full"></p>
-                  <p>Available</p>
-                </div>
+                {doctor.available ? (
+                  <div className="flex items-center gap-2 text-sm text-center text-green-500">
+                    <p className="w-2 h-2 bg-green-500 rounded-full"></p>
+                    <p>Available</p>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-sm text-center text-red-500">
+                    <p className="w-2 h-2 bg-red-500 rounded-full"></p>
+                    <p>Not Available</p>
+                  </div>
+                )}
+
                 <p className="text-gray-900 text-lg font-medium">
                   {doctor.name}
                 </p>

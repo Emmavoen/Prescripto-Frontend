@@ -125,7 +125,12 @@ const MyAppointment = () => {
             </div>
             <div className="flex-3"></div>
             <div className="flex flex-col justify-end gap-2">
-              {!item.cancelled && (
+              {!item.cancelled && item.payment && (
+                <button className="sm:min-w-48 py-2 border rounded text-stone-500 bg-indigo-50">
+                  Paid
+                </button>
+              )}
+              {!item.cancelled && !item.payment && (
                 <button
                   onClick={() => appointmentPaystackPay(item._id)}
                   className="text-sm text-stone-500 text-center sm:min-w-48 py-2 border hover:bg-[#5F6FFF] hover:text-white transition-all duration-300"
