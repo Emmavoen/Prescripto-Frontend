@@ -8,7 +8,7 @@ import AddDoctor from "./pages/Admin/AddDoctor.jsx";
 import Dashboard from "./pages/Admin/Dashboard.jsx";
 import AllApointment from "./pages/Admin/AllApointment.jsx";
 import DoctorsList from "./pages/Admin/DoctorsList.jsx";
-import Login from "./pages/login.jsx";
+import Login from "./pages/Login.jsx";
 import DoctorDashboard from "./pages/Doctor/DoctorDashboard.jsx";
 import DoctorAppointment from "./pages/Doctor/DoctorAppointment.jsx";
 import DoctorProfile from "./pages/Doctor/DoctorProfile.jsx";
