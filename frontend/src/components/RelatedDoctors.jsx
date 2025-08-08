@@ -11,6 +11,7 @@ const RelatedDoctors = ({ docId, speciality }) => {
       (doc) => doc._id !== docId && doc.speciality === speciality
     );
     setRelDoc(filteredDocs);
+    console.log("Related Doctors:", filteredDocs);
   }, [doctors, docId, speciality]);
   return (
     <div>
@@ -31,8 +32,17 @@ const RelatedDoctors = ({ docId, speciality }) => {
             <img src={doctor.image} alt="" className="bg-[#EAEFFF] w-full" />
             <div className="p-4">
               <div className="flex items-center gap-2 text-sm text-center text-green-500">
-                <p className="w-2 h-2 bg-green-500 rounded-full"></p>
-                <p>Available</p>
+                {doctor.available ? (
+                  <div className="flex items-center gap-2 text-sm text-center text-green-500">
+                    <p className="w-2 h-2 bg-green-500 rounded-full"></p>
+                    <p>Available</p>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2 text-sm text-center text-red-500">
+                    <p className="w-2 h-2 bg-red-500 rounded-full"></p>
+                    <p>Not Available</p>
+                  </div>
+                )}
               </div>
               <p className="text-gray-900 text-lg font-medium">{doctor.name}</p>
               <p className="text-gray-600 text-sm">{doctor.speciality}</p>

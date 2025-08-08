@@ -6,11 +6,14 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const [showMenu, setShowMenu] = useState(false);
+  const [showSelect, setShowSelect] = useState(false);
   const { token, setToken, userData } = useContext(AppContext);
-  // const [dropdownOpen, setDropdownOpen] = useState(false); // NEW STATE
 
-  // Helper to toggle dropdown on mobile
-  // const handleProfileClick = () => setDropdownOpen((prev) => !prev);
+  const handleProfileClick = () => {
+    console.log("handleProfile Clicked");
+    setShowSelect((prev) => !prev);
+    console.log("showSelect:", showSelect);
+  };
   const logout = () => {
     localStorage.removeItem("token");
     setToken(false);
@@ -44,37 +47,41 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         {token && userData ? (
           <div
-            className="flex items-center gap-2 cursor-pointer group relative"
-            // Only toggle on click for mobile
-            // onClick={handleProfileClick}
+            className="flex items-center gap-2 cursor-pointer  relative"
+            onClick={() => handleProfileClick()}
           >
             <img className="w-8 rounded-full" src={userData.image} alt="" />
             <img className="w-2.5" src={assets.dropdown_icon} alt="" />
             <div
               className={`
                 absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20
-                hidden group-hover:block
+                
 
               
               `}
             >
-              <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
-                <p
-                  onClick={() => navigate("/myprofile")}
-                  className="hover:text-black cursor-pointer"
-                >
-                  My Profile
-                </p>
-                <p
-                  onClick={() => navigate("/my-appointments")}
-                  className="hover:text-black cursor-pointer"
-                >
-                  My Appointments
-                </p>
-                <p onClick={logout} className="hover:text-black cursor-pointer">
-                  Logout
-                </p>
-              </div>
+              {showSelect && (
+                <div className="min-w-48 bg-stone-100 rounded flex flex-col gap-4 p-4">
+                  <p
+                    onClick={() => navigate("/myprofile")}
+                    className="hover:text-black cursor-pointer"
+                  >
+                    My Profile
+                  </p>
+                  <p
+                    onClick={() => navigate("/my-appointments")}
+                    className="hover:text-black cursor-pointer"
+                  >
+                    My Appointments
+                  </p>
+                  <p
+                    onClick={logout}
+                    className="hover:text-black cursor-pointer"
+                  >
+                    Logout
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         ) : (

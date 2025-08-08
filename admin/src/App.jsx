@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ToastContainer } from "react-toastify";
-import { AdminContext } from "./context/ContextFile.jsx";
+import { AdminContext, DoctorContext } from "./context/ContextFile.jsx";
 import Navbar from "./components/navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import { Route, Routes } from "react-router-dom";
@@ -8,22 +8,30 @@ import AddDoctor from "./pages/Admin/AddDoctor.jsx";
 import Dashboard from "./pages/Admin/Dashboard.jsx";
 import AllApointment from "./pages/Admin/AllApointment.jsx";
 import DoctorsList from "./pages/Admin/DoctorsList.jsx";
-import Login from "../../admin/src/pages/Login.jsx";
-
+import Login from "./pages/login.jsx";
+import DoctorDashboard from "./pages/Doctor/DoctorDashboard.jsx";
+import DoctorAppointment from "./pages/Doctor/Doctorappointment.jsx";
+import DoctorProfile from "./pages/Doctor/DoctorProfile.jsx";
 const App = () => {
   const { aToken } = useContext(AdminContext);
-  return aToken ? (
+  const { dToken } = useContext(DoctorContext);
+  return aToken || dToken ? (
     <div className="bg-[#F8F9FD]">
       <ToastContainer />
       <Navbar />
       <div className="flex flexitems-start">
         <Sidebar />
         <Routes>
+          {/* Admin Route */}
           <Route path="/" element={<></>} />
           <Route path="/add-doctor" element={<AddDoctor />} />
           <Route path="/admin-dashboard" element={<Dashboard />} />
           <Route path="/all-appointments" element={<AllApointment />} />
           <Route path="/doctors-list" element={<DoctorsList />} />
+          {/* Doctor Route */}
+          <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+          <Route path="/doctor-appointments" element={<DoctorAppointment />} />
+          <Route path="/doctor-profile" element={<DoctorProfile />} />
         </Routes>
       </div>
     </div>
